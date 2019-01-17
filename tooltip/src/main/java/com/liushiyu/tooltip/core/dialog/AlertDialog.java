@@ -13,12 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.liushiyu.tooltip.R;
-import com.liushiyu.tooltip.R2;
 import com.liushiyu.tooltip.core.base.BaseDialog;
-
-
-import butterknife.BindView;
-import im.wangchao.mcommon.utils.StringUtils;
 
 /**
  * created by liushuai on 2018/11/9
@@ -53,34 +48,24 @@ public class AlertDialog extends BaseDialog {
     //新中间View 的布局参数
     private ViewGroup.LayoutParams newMiddleViewParams;
 
-    @BindView(R2.id.dialogTitle)
     TextView dialogTitle;
 
-    @BindView(R2.id.dialogMessage)
     TextView dialogMessage;
 
-    @BindView(R2.id.dialogChildMessage)
     TextView dialogChildMessage;
 
-    @BindView(R2.id.middleLayout)
     LinearLayout middleLayout;
 
-    @BindView(R2.id.dialogButtonOne)
     Button dialogButtonOne;
 
-    @BindView(R2.id.dialogButtonTwo)
     Button dialogButtonTwo;
 
-    @BindView(R2.id.dialogButtonThree)
     Button dialogButtonThree;
 
-    @BindView(R2.id.dialogButtonOneButtonTwoLine)
     View dialogButtonOneButtonTwoLine;
 
-    @BindView(R2.id.dialogButtonTwoButtonThreeLine)
     View dialogButtonTwoButtonThreeLine;
 
-    @BindView(R2.id.buttonLayoutTopLine)
     View buttonLayoutTopLine;
 
     public static Builder builder() {
@@ -121,7 +106,26 @@ public class AlertDialog extends BaseDialog {
     }
 
     @Override
-    protected void created(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    protected void created(LayoutInflater inflater, ViewGroup container, View root, Bundle savedInstanceState) {
+        dialogTitle = root.findViewById(R.id.dialogTitle);
+
+        dialogMessage = root.findViewById(R.id.dialogMessage);
+
+        dialogChildMessage = root.findViewById(R.id.dialogChildMessage);
+
+        middleLayout = root.findViewById(R.id.middleLayout);
+
+        dialogButtonOne = root.findViewById(R.id.dialogButtonOne);
+
+        dialogButtonTwo = root.findViewById(R.id.dialogButtonTwo);
+
+        dialogButtonThree = root.findViewById(R.id.dialogButtonThree);
+
+        dialogButtonOneButtonTwoLine = root.findViewById(R.id.dialogButtonOneButtonTwoLine);
+
+        dialogButtonTwoButtonThreeLine = root.findViewById(R.id.dialogButtonTwoButtonThreeLine);
+
+        buttonLayoutTopLine = root.findViewById(R.id.buttonLayoutTopLine);
 
     }
 
@@ -154,7 +158,7 @@ public class AlertDialog extends BaseDialog {
             mCanceledOnTouchOutside = bundle.getBoolean(CANCELED_ON_TOUCH_OUTSIDE);
         }
 
-        if (StringUtils.isNotEmpty(mTitle)) {
+        if (!TextUtils.isEmpty(mTitle)) {
             dialogTitle.setText(mTitle);
             dialogTitle.setVisibility(View.VISIBLE);
         } else {

@@ -1,6 +1,5 @@
 package com.libraris.demo;
 
-import android.content.DialogInterface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Toast;
@@ -10,7 +9,6 @@ import com.liushiyu.tooltip.Tooltip;
 import com.liushiyu.tooltip.core.loading.LoadingDialog;
 import com.liushiyu.tooltip.core.sheet.SheetDialog;
 
-import com.alibaba.fastjson.JSONObject;
 
 import java.util.ArrayList;
 
@@ -72,14 +70,14 @@ public class MainActivity extends AppCompatActivity {
                 .setCancelableBackButtonCanGoAway(true)
                 .setSheetListener(new SheetDialog.SheetDialogListener() {
                     @Override
-                    public void onOptionSelected(JSONObject option) {
-                        String index = option.getString("index");
-                        String value = option.getString("value");
+                    public void onOptionSelected(org.json.JSONObject option) {
+                        String index = option.optString("index");
+                        String value = option.optString("value");
                         Toast.makeText(MainActivity.this, "点击了第" + index + "条的" + value + "数据", Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
-                    public void onDismiss(DialogInterface dialog) {
+                    public void onDismiss() {
 
                     }
                 }).build().show(getSupportFragmentManager(), "sheet");

@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,18 +15,13 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.liushiyu.tooltip.R;
-import com.liushiyu.tooltip.R2;
 import com.liushiyu.tooltip.core.base.BaseDialog;
-
-import butterknife.BindView;
-import im.wangchao.mcommon.utils.StringUtils;
 
 /**
  * created by liushuai on 2018/11/9
  */
 public class LoadingDialog extends BaseDialog {
 
-    @BindView(R2.id.loadingText)
     TextView mLoadingText;
 
     private String mMessage;
@@ -43,8 +39,8 @@ public class LoadingDialog extends BaseDialog {
     }
 
     @Override
-    protected void created(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
+    protected void created(LayoutInflater inflater, ViewGroup container, View root, Bundle savedInstanceState) {
+        mLoadingText = root.findViewById(R.id.loadingText);
     }
 
     @Override
@@ -84,7 +80,7 @@ public class LoadingDialog extends BaseDialog {
             setCanceledOnTouchOutside(mCanceledOnTouchOutside);
 
             mMessage = bundle.getString("message");
-            if (StringUtils.isNotEmpty(mMessage)) {
+            if (!TextUtils.isEmpty(mMessage)) {
                 mLoadingText.setVisibility(View.VISIBLE);
                 mLoadingText.setText(mMessage);
             } else {

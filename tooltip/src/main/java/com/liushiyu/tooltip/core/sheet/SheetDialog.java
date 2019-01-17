@@ -1,5 +1,6 @@
 package com.liushiyu.tooltip.core.sheet;
 
+import android.content.DialogInterface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
@@ -15,14 +16,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 
-import com.alibaba.fastjson.JSONObject;
 import com.liushiyu.tooltip.R;
-import com.liushiyu.tooltip.R2;
 import com.liushiyu.tooltip.core.base.BaseDialog;
 
-import java.util.ArrayList;
+import org.json.JSONException;
+import org.json.JSONObject;
 
-import butterknife.BindView;
+import java.util.ArrayList;
 
 /**
  * 底部弹出框
@@ -39,19 +39,16 @@ public class SheetDialog extends BaseDialog {
     private boolean cancelable;
     private boolean cancelableBackButtonCanGoAway;
 
-    @BindView(R2.id.animationView)
     LinearLayout animationView;
-    @BindView(R2.id.containerView)
     LinearLayout containerView;
-    @BindView(R2.id.cancelView)
     LinearLayout cancelView;
-    @BindView(R2.id.cancelButton)
     TextView cancelButton;
 
     public SheetDialogListener mListener;
 
-    public interface SheetDialogListener extends BaseDialogListener {
+    public interface SheetDialogListener {
         void onOptionSelected(JSONObject option);
+        void onDismiss();
     }
 
     public static Builder builder() {
@@ -71,12 +68,26 @@ public class SheetDialog extends BaseDialog {
     public void onStart() {
         super.onStart();
         Window window = getDialog().getWindow();
-        WindowManager.LayoutParams params = window.getAttributes();
-        params.gravity = Gravity.BOTTOM;
-        params.width = WindowManager.LayoutParams.MATCH_PARENT;
-        window.setAttributes(params);
-        int color = ContextCompat.getColor(getActivity(), android.R.color.transparent);
-        window.setBackgroundDrawable(new ColorDrawable(color));
+
+        if (window != null && window.getAttributes() != null) {
+            WindowManager.LayoutParams params = window.getAttributes();
+            params.gravity = Gravity.BOTTOM;
+            params.width = WindowManager.LayoutParams.MATCH_PARENT;
+            window.setAttributes(params);
+        }
+
+        if (window != null && getActivity() != null) {
+            int color = ContextCompat.getColor(getActivity(), android.R.color.transparent);
+            window.setBackgroundDrawable(new ColorDrawable(color));
+        }
+    }
+
+    @Override
+    public void onDismiss(DialogInterface dialog) {
+        super.onDismiss(dialog);
+        if (mListener != null) {
+            mListener.onDismiss();
+        }
     }
 
     @Override
@@ -85,7 +96,12 @@ public class SheetDialog extends BaseDialog {
     }
 
     @Override
-    protected void created(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    protected void created(LayoutInflater inflater, ViewGroup container, View root, Bundle savedInstanceState) {
+        animationView = root.findViewById(R.id.animationView);
+        containerView = root.findViewById(R.id.containerView);
+        cancelView = root.findViewById(R.id.cancelView);
+        cancelButton = root.findViewById(R.id.cancelButton);
+
         Bundle bundle = getArguments();
         if (bundle != null) {
             init(bundle);
@@ -115,8 +131,12 @@ public class SheetDialog extends BaseDialog {
 
             if (mListener != null) {
                 JSONObject optionObj = new JSONObject();
-                optionObj.put("index", -1);
-                optionObj.put("value", specialButtonText);
+                try {
+                    optionObj.put("index", -1);
+                    optionObj.put("value", specialButtonText);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
                 mListener.onOptionSelected(optionObj);
             }
             dismiss();
@@ -147,8 +167,12 @@ public class SheetDialog extends BaseDialog {
         itemView.setOnClickListener((v) -> {
             if (mListener != null) {
                 JSONObject optionObj = new JSONObject();
-                optionObj.put("index", index);
-                optionObj.put("value", text);
+                try {
+                    optionObj.put("index", index);
+                    optionObj.put("value", text);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
                 mListener.onOptionSelected(optionObj);
             }
             dismiss();

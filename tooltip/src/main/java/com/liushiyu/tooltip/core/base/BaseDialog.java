@@ -11,26 +11,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import butterknife.ButterKnife;
-
 /**
  * created by liushuai on 2018/11/9
  */
 public abstract class BaseDialog extends DialogFragment {
 
-    private BaseDialogListener mListener;
+    protected abstract void created(LayoutInflater inflater, ViewGroup container, View root, Bundle savedInstanceState);
 
-    public interface BaseDialogListener {
-        void onDismiss(DialogInterface dialog);
-    }
-
-    public void setBaseDialogListener(BaseDialogListener listener) {
-        this.mListener = listener;
-    }
-
-    protected abstract void created(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState);
-
-    private DialogInterface.OnDismissListener mOnDismissListener;
     protected View mRootView;
 
     protected abstract int styleId();
@@ -49,31 +36,26 @@ public abstract class BaseDialog extends DialogFragment {
         super.onCreateView(inflater, container, savedInstanceState);
         if (mRootView == null) {
             mRootView = inflater.inflate(layoutId(), container, false);
-            ButterKnife.bind(this, mRootView);
         } else {
             ViewGroup parent = (ViewGroup) mRootView.getParent();
             if (parent != null) {
                 parent.removeView(mRootView);
             }
         }
-        created(inflater, container, savedInstanceState);
+        created(inflater, container, mRootView, savedInstanceState);
         return mRootView;
     }
 
     @Override
     public void onDismiss(DialogInterface dialog) {
-        super.onDismiss(dialog);
-        if (mOnDismissListener != null) {
-            mOnDismissListener.onDismiss(dialog);
+        try {
+            super.onDismiss(dialog);
+        } catch (Exception ignore) {
         }
     }
 
     public void setCanceledOnTouchOutside(boolean cancel) {
         getDialog().setCanceledOnTouchOutside(cancel);
-    }
-
-    public void setOnDismissListener(DialogInterface.OnDismissListener listener) {
-        this.mOnDismissListener = listener;
     }
 
     @Override
