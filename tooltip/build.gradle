@@ -38,10 +38,10 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
-    implementation 'com.jakewharton:butterknife:8.8.1'
+    compileOnly 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
 
-    implementation 'im.wangchao:mcommon:0.8.9'
+    compileOnly 'im.wangchao:mcommon:0.8.9'
 
-    implementation 'com.alibaba:fastjson:1.1.64.android'
+    compileOnly 'com.alibaba:fastjson:1.1.64.android'
 }
