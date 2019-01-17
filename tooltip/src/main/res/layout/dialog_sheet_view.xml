@@ -45,7 +45,7 @@
                 android:background="@drawable/background_white_item_selector"
                 android:text="取消"
                 android:textColor="#999999"
-                android:textSize="16dp" />
+                android:textSize="16sp" />
 
         </LinearLayout>
     </LinearLayout>
