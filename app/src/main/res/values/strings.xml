@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Tooltip</string>
+    <string name="linkage_list_view_text">LinkageListView</string>
+    <string name="tooltip_text">Tooltip</string>
+    <string name="tooltip_alert_dialog_text">对话框</string>
+    <string name="tooltip_loading_dialog_text">loading</string>
+    <string name="tooltip_sheet_dialog_text">底部弹出选择框</string>
+</resources>

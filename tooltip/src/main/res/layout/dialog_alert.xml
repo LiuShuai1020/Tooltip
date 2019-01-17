@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="40dp"
+    android:background="@drawable/background_dialog_alert"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/dialogTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:maxLines="1"
+        android:paddingTop="10dp"
+        android:textColor="@color/color_theme_dark_gray"
+        android:textSize="@dimen/font_level_two" />
+
+    <LinearLayout
+        android:id="@+id/middleLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/dialogMessage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="10dp"
+            android:textColor="@color/color_theme_dark_gray"
+            android:textSize="@dimen/font_level_three"
+            tools:text="提示的内容" />
+
+        <TextView
+            android:id="@+id/dialogChildMessage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="10dp"
+            android:textColor="@color/color_theme_dark_gray"
+            android:textSize="@dimen/font_level_three"
+            tools:text="提示的内容" />
+
+    </LinearLayout>
+
+    <include
+        android:id="@+id/buttonLayoutTopLine"
+        layout="@layout/view_common_include_line" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/dialogButtonOne"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/size_dialog_button_height"
+            android:layout_weight="1"
+            android:background="@drawable/background_dialog_button"
+            android:text="@string/common_next"
+            android:textColor="@color/color_theme_dark_gray"
+            android:textSize="@dimen/font_level_three" />
+
+        <View
+            android:id="@+id/dialogButtonOneButtonTwoLine"
+            android:layout_width="1px"
+            android:layout_height="match_parent"
+            android:background="#999999"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/dialogButtonTwo"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/size_dialog_button_height"
+            android:layout_weight="1"
+            android:background="@drawable/background_dialog_button"
+            android:text="@string/common_next"
+            android:textColor="@color/color_theme_dark_gray"
+            android:textSize="@dimen/font_level_three"
+            android:visibility="visible" />
+
+        <View
+            android:id="@+id/dialogButtonTwoButtonThreeLine"
+            android:layout_width="1px"
+            android:layout_height="match_parent"
+            android:background="#999999"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/dialogButtonThree"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/size_dialog_button_height"
+            android:layout_weight="1"
+            android:background="@drawable/background_dialog_button"
+            android:text="@string/common_next"
+            android:textColor="@color/color_theme_dark_gray"
+            android:textSize="@dimen/font_level_three"
+            android:visibility="visible" />
+    </LinearLayout>
+
+
+</LinearLayout>
