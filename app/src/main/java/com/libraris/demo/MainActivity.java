@@ -1,9 +1,11 @@
 package com.libraris.demo;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import com.libraris.demo.module.ToastDemoActivity;
 import com.libraris.demo.utils.TimeCount;
 import com.liushiyu.tooltip.Tooltip;
 import com.liushiyu.tooltip.core.loading.LoadingDialog;
@@ -26,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
     @OnClick(R.id.tooltipToastButton)
     public void tooltipToastButtonClick() {
-
+        startActivity(new Intent(this,ToastDemoActivity.class));
     }
 
     @OnClick(R.id.tooltipAlertDialogButton)

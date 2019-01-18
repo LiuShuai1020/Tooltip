@@ -3,7 +3,7 @@ package com.liushiyu.tooltip;
 import com.liushiyu.tooltip.agent.DialogAgent;
 import com.liushiyu.tooltip.agent.LoadingAgent;
 import com.liushiyu.tooltip.agent.SheetAgent;
-import com.liushiyu.tooltip.core.toast.ToastUtils;
+import com.liushiyu.tooltip.agent.ToastAgent;
 
 /**
  * created by liushuai on 2019/1/16
@@ -26,7 +26,7 @@ public class Tooltip {
         return new SheetAgent();
     }
 
-    public static ToastUtils toast() {
-        return new ToastUtils();
+    public static ToastAgent toast() {
+        return new ToastAgent();
     }
 }
