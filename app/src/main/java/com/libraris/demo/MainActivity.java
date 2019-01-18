@@ -24,6 +24,11 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
     }
 
+    @OnClick(R.id.tooltipToastButton)
+    public void tooltipToastButtonClick() {
+
+    }
+
     @OnClick(R.id.tooltipAlertDialogButton)
     public void TooltipButtonClick() {
         Tooltip.alertDialog()
