@@ -69,7 +69,7 @@
             android:id="@+id/dialogButtonOneButtonTwoLine"
             android:layout_width="1px"
             android:layout_height="match_parent"
-            android:background="#999999"
+            android:background="@color/color_divide"
             android:visibility="gone" />
 
         <Button
@@ -87,7 +87,7 @@
             android:id="@+id/dialogButtonTwoButtonThreeLine"
             android:layout_width="1px"
             android:layout_height="match_parent"
-            android:background="#999999"
+            android:background="@color/color_divide"
             android:visibility="gone" />
 
         <Button
