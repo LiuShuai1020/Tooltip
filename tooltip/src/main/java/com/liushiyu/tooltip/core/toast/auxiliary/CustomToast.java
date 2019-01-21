@@ -256,31 +256,19 @@ public class CustomToast implements IToast {
 
     @Override
     public void showSuccess() {
-        if (mLeftIconRes == NO_LEFT_ICON) {
-            setLeftIconRes(mType == EMPHASIZE ? getSuccessEmphasizeLeftRes() : getSuccessLeftRes());
-        } else {
-            setLeftIconRes(mLeftIconRes);
-        }
+        setLeftIconRes(mType == EMPHASIZE ? R.drawable.ic_check_circle_white_24dp : R.drawable.ic_done_white_24dp);
         show();
     }
 
     @Override
     public void showError() {
-        if (mLeftIconRes == NO_LEFT_ICON) {
-            setLeftIconRes(getErrorLeftResId());
-        } else {
-            setLeftIconRes(mLeftIconRes);
-        }
+        setLeftIconRes(R.drawable.ic_clear_white_24dp);
         show();
     }
 
     @Override
     public void showWarning() {
-        if (mLeftIconRes == NO_LEFT_ICON) {
-            setLeftIconRes(getWarningLeftResId());
-        } else {
-            setLeftIconRes(mLeftIconRes);
-        }
+        setLeftIconRes(R.drawable.ic_error_outline_white_24dp);
         show();
     }
 
@@ -305,21 +293,5 @@ public class CustomToast implements IToast {
         ImageView imageView = layout.findViewById(R.id.btn_icon);
         imageView.setBackgroundResource(resId);
         return this;
-    }
-
-    private int getSuccessLeftRes() {
-        return R.drawable.ic_done_white_24dp;
-    }
-
-    private int getSuccessEmphasizeLeftRes() {
-        return R.drawable.ic_check_circle_white_24dp;
-    }
-
-    private int getWarningLeftResId() {
-        return R.drawable.ic_error_outline_white_24dp;
-    }
-
-    private int getErrorLeftResId() {
-        return R.drawable.ic_error_outline_white_24dp;
     }
 }
