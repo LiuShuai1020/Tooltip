@@ -1,5 +1,7 @@
 package com.liushiyu.tooltip.core.loading;
 
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
@@ -8,9 +10,12 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -92,6 +97,16 @@ public class LoadingDialog extends BaseDialog {
         }
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        Window window = getDialog().getWindow();
+        assert window != null;
+        WindowManager.LayoutParams params = window.getAttributes();
+        params.gravity = Gravity.CENTER;
+        window.setAttributes(params);
+        window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+    }
 
     public static class Builder {
         boolean cancelable;
